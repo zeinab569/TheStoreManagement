@@ -343,6 +343,13 @@
     <FunctionImport Name="ForStore" ReturnType="Collection(InventoryModel.ForStore_Result)" />
     <FunctionImport Name="ListExport" ReturnType="Collection(InventoryModel.ListExport_Result)" />
     <FunctionImport Name="ListImport" ReturnType="Collection(InventoryModel.ListImport_Result)" />
+    <FunctionImport Name="ListTransfer" ReturnType="Collection(InventoryModel.ListTransfer_Result)" />
+    <FunctionImport Name="alreadyExpire" ReturnType="Collection(InventoryModel.alreadyExpire_Result)">
+      <Parameter Name="theDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="CloseToExpire" ReturnType="Collection(InventoryModel.CloseToExpire_Result)">
+      <Parameter Name="theDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ForItem_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -378,5 +385,23 @@
     <Property Type="Int32" Name="validity_period" Nullable="true" />
     <Property Type="Int32" Name="item_id" Nullable="true" />
     <Property Type="Int32" Name="quantity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ListTransfer_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="quantity" Nullable="true" />
+    <Property Type="DateTime" Name="production_date" Nullable="true" />
+    <Property Type="Int32" Name="validity_period" Nullable="true" />
+    <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ItemName" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="alreadyExpire_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="expire_date" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CloseToExpire_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="expire_date" Nullable="true" />
   </ComplexType>
 </Schema>

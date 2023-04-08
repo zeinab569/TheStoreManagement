@@ -81,5 +81,31 @@ namespace TheEntityStoreManagementProject.Screens
             productsReport.Show();
             
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Transfer_Itemes transfer_Itemes = new Transfer_Itemes();
+            transfer_Itemes.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TransferItemReport transferItemReport = new TransferItemReport();
+            transferItemReport.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            CloseToExpire ex = new CloseToExpire();
+            ex.Show();
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            AlreadyExpire al = new AlreadyExpire();
+            al.Show();
+
+        }
     }
 }

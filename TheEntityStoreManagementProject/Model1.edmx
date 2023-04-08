@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="customers">
           <Key>
             <PropertyRef Name="id" />
@@ -261,10 +261,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="alreadyExpire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="theDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="CloseToExpire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="theDate" Type="date" Mode="In" />
+        </Function>
         <Function Name="ForItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ForStore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ListExport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ListImport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ListTransfer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="InventoryModelStoreContainer">
           <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExchangePermits" EntityType="Self.ExchangePermits" Schema="dbo" store:Type="Tables" />
@@ -325,8 +332,7 @@
             <End Role="warehouses" EntitySet="warehouses" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -673,6 +679,13 @@
           <FunctionImport Name="ForStore" ReturnType="Collection(InventoryModel.ForStore_Result)" />
           <FunctionImport Name="ListExport" ReturnType="Collection(InventoryModel.ListExport_Result)" />
           <FunctionImport Name="ListImport" ReturnType="Collection(InventoryModel.ListImport_Result)" />
+          <FunctionImport Name="ListTransfer" ReturnType="Collection(InventoryModel.ListTransfer_Result)" />
+          <FunctionImport Name="alreadyExpire" ReturnType="Collection(InventoryModel.alreadyExpire_Result)">
+          <Parameter Name="theDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="CloseToExpire" ReturnType="Collection(InventoryModel.CloseToExpire_Result)">
+          <Parameter Name="theDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ForItem_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -708,6 +721,24 @@
           <Property Type="Int32" Name="validity_period" Nullable="true" />
           <Property Type="Int32" Name="item_id" Nullable="true" />
           <Property Type="Int32" Name="quantity" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ListTransfer_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="quantity" Nullable="true" />
+          <Property Type="DateTime" Name="production_date" Nullable="true" />
+          <Property Type="Int32" Name="validity_period" Nullable="true" />
+          <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="alreadyExpire_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="expire_date" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CloseToExpire_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="expire_date" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -885,6 +916,36 @@
                 <ScalarProperty Name="validity_period" ColumnName="validity_period" />
                 <ScalarProperty Name="item_id" ColumnName="item_id" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ListTransfer" FunctionName="InventoryModel.Store.ListTransfer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryModel.ListTransfer_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="production_date" ColumnName="production_date" />
+                <ScalarProperty Name="validity_period" ColumnName="validity_period" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="alreadyExpire" FunctionName="InventoryModel.Store.alreadyExpire">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryModel.alreadyExpire_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="expire_date" ColumnName="expire_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CloseToExpire" FunctionName="InventoryModel.Store.CloseToExpire">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryModel.CloseToExpire_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="expire_date" ColumnName="expire_date" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

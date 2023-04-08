@@ -39,6 +39,10 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AnalysisServices.AppLocal, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.AnalysisServices.AppLocal.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.AnalysisServices.AppLocal.Tabular, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -55,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="alreadyExpire_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CloseToExpire_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -85,6 +95,9 @@
     <Compile Include="ListImport_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ListTransfer_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -105,6 +118,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporting_For_Store\AlreadyExpire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporting_For_Store\AlreadyExpire.Designer.cs">
+      <DependentUpon>AlreadyExpire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting_For_Store\CloseToExpire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporting_For_Store\CloseToExpire.Designer.cs">
+      <DependentUpon>CloseToExpire.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporting_For_Store\ProductsReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +141,12 @@
     </Compile>
     <Compile Include="Reporting_For_Store\StoreReport.Designer.cs">
       <DependentUpon>StoreReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting_For_Store\TransferItemReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporting_For_Store\TransferItemReport.Designer.cs">
+      <DependentUpon>TransferItemReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\Customers.cs">
       <SubType>Form</SubType>
@@ -165,6 +196,12 @@
     <Compile Include="Screens\TheStore.Designer.cs">
       <DependentUpon>TheStore.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Transfer_Itemes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Transfer_Itemes.Designer.cs">
+      <DependentUpon>Transfer_Itemes.cs</DependentUpon>
+    </Compile>
     <Compile Include="store.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -189,11 +226,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reporting_For_Store\AlreadyExpire.resx">
+      <DependentUpon>AlreadyExpire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting_For_Store\CloseToExpire.resx">
+      <DependentUpon>CloseToExpire.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reporting_For_Store\ProductsReport.resx">
       <DependentUpon>ProductsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporting_For_Store\StoreReport.resx">
       <DependentUpon>StoreReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting_For_Store\TransferItemReport.resx">
+      <DependentUpon>TransferItemReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Customers.resx">
       <DependentUpon>Customers.cs</DependentUpon>
@@ -219,6 +265,9 @@
     <EmbeddedResource Include="Screens\TheStore.resx">
       <DependentUpon>TheStore.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Transfer_Itemes.resx">
+      <DependentUpon>Transfer_Itemes.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -227,10 +276,13 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\alreadyExpire_Result.datasource" />
+    <None Include="Properties\DataSources\CloseToExpire_Result.datasource" />
     <None Include="Properties\DataSources\ForItem_Result.datasource" />
     <None Include="Properties\DataSources\ForStore_Result.datasource" />
     <None Include="Properties\DataSources\ListExport_Result.datasource" />
     <None Include="Properties\DataSources\ListImport_Result.datasource" />
+    <None Include="Properties\DataSources\ListTransfer_Result.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -45,6 +45,10 @@
             this.txtCode = new System.Windows.Forms.TextBox();
             this.txtname = new System.Windows.Forms.TextBox();
             this.txtid = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.productiondate = new System.Windows.Forms.DateTimePicker();
+            this.expiredate = new System.Windows.Forms.DateTimePicker();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -106,6 +110,10 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.groupBox1.Controls.Add(this.expiredate);
+            this.groupBox1.Controls.Add(this.productiondate);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btndelete);
             this.groupBox1.Controls.Add(this.btnupdate);
             this.groupBox1.Controls.Add(this.btnadd);
@@ -168,7 +176,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(16, 331);
+            this.label4.Location = new System.Drawing.Point(16, 257);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(177, 27);
             this.label4.TabIndex = 60;
@@ -179,7 +187,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(25, 257);
+            this.label3.Location = new System.Drawing.Point(36, 182);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(125, 27);
             this.label3.TabIndex = 59;
@@ -190,7 +198,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(25, 182);
+            this.label2.Location = new System.Drawing.Point(36, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(133, 27);
             this.label2.TabIndex = 58;
@@ -201,7 +209,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(36, 93);
+            this.label1.Location = new System.Drawing.Point(36, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 27);
             this.label1.TabIndex = 57;
@@ -210,7 +218,7 @@
             // txtunit
             // 
             this.txtunit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtunit.Location = new System.Drawing.Point(200, 334);
+            this.txtunit.Location = new System.Drawing.Point(200, 260);
             this.txtunit.Margin = new System.Windows.Forms.Padding(4);
             this.txtunit.Name = "txtunit";
             this.txtunit.Size = new System.Drawing.Size(403, 24);
@@ -219,7 +227,7 @@
             // txtCode
             // 
             this.txtCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCode.Location = new System.Drawing.Point(200, 269);
+            this.txtCode.Location = new System.Drawing.Point(200, 185);
             this.txtCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(403, 24);
@@ -228,7 +236,7 @@
             // txtname
             // 
             this.txtname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtname.Location = new System.Drawing.Point(200, 185);
+            this.txtname.Location = new System.Drawing.Point(200, 114);
             this.txtname.Margin = new System.Windows.Forms.Padding(4);
             this.txtname.Name = "txtname";
             this.txtname.Size = new System.Drawing.Size(403, 24);
@@ -237,11 +245,47 @@
             // txtid
             // 
             this.txtid.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtid.Location = new System.Drawing.Point(200, 96);
+            this.txtid.Location = new System.Drawing.Point(200, 47);
             this.txtid.Margin = new System.Windows.Forms.Padding(4);
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(403, 24);
             this.txtid.TabIndex = 53;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label5.Location = new System.Drawing.Point(20, 311);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(159, 54);
+            this.label5.TabIndex = 64;
+            this.label5.Text = "Production Date\r\n\r\n";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label6.Location = new System.Drawing.Point(18, 362);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(123, 27);
+            this.label6.TabIndex = 65;
+            this.label6.Text = "Expire Date";
+            // 
+            // productiondate
+            // 
+            this.productiondate.Location = new System.Drawing.Point(200, 315);
+            this.productiondate.Name = "productiondate";
+            this.productiondate.Size = new System.Drawing.Size(403, 20);
+            this.productiondate.TabIndex = 66;
+            // 
+            // expiredate
+            // 
+            this.expiredate.Location = new System.Drawing.Point(200, 366);
+            this.expiredate.Name = "expiredate";
+            this.expiredate.Size = new System.Drawing.Size(403, 20);
+            this.expiredate.TabIndex = 67;
             // 
             // Product
             // 
@@ -278,5 +322,9 @@
         private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.TextBox txtname;
         private System.Windows.Forms.TextBox txtid;
+        private System.Windows.Forms.DateTimePicker expiredate;
+        private System.Windows.Forms.DateTimePicker productiondate;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }

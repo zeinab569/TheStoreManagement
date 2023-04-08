@@ -174,5 +174,35 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListTransfer" FunctionName="InventoryModel.Store.ListTransfer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryModel.ListTransfer_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="production_date" ColumnName="production_date" />
+          <ScalarProperty Name="validity_period" ColumnName="validity_period" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="alreadyExpire" FunctionName="InventoryModel.Store.alreadyExpire">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryModel.alreadyExpire_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="expire_date" ColumnName="expire_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CloseToExpire" FunctionName="InventoryModel.Store.CloseToExpire">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryModel.CloseToExpire_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="expire_date" ColumnName="expire_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

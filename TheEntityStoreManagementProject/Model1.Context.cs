@@ -57,5 +57,28 @@ namespace TheEntityStoreManagementProject
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListImport_Result>("ListImport");
         }
+    
+        public virtual ObjectResult<ListTransfer_Result> ListTransfer()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListTransfer_Result>("ListTransfer");
+        }
+    
+        public virtual ObjectResult<alreadyExpire_Result> alreadyExpire(Nullable<System.DateTime> theDate)
+        {
+            var theDateParameter = theDate.HasValue ?
+                new ObjectParameter("theDate", theDate) :
+                new ObjectParameter("theDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<alreadyExpire_Result>("alreadyExpire", theDateParameter);
+        }
+    
+        public virtual ObjectResult<CloseToExpire_Result> CloseToExpire(Nullable<System.DateTime> theDate)
+        {
+            var theDateParameter = theDate.HasValue ?
+                new ObjectParameter("theDate", theDate) :
+                new ObjectParameter("theDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CloseToExpire_Result>("CloseToExpire", theDateParameter);
+        }
     }
 }

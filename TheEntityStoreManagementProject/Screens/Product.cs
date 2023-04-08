@@ -41,6 +41,8 @@ namespace TheEntityStoreManagementProject.Screens
                 p1.code = txtCode.Text;
                 p1.name = txtname.Text;
                 p1.unit_of_measurement = txtunit.Text;
+                p1.production_date = productiondate.Value;
+                p1.expire_date=expiredate.Value;
                 itemmodel.items.Add(p1);
                 itemmodel.SaveChanges();
                 MessageBox.Show("added successfuly ^_^");
@@ -65,6 +67,8 @@ namespace TheEntityStoreManagementProject.Screens
                     p1.code = txtCode.Text;
                     p1.name = txtname.Text;
                     p1.unit_of_measurement = txtunit.Text;
+                    p1.production_date = productiondate.Value;
+                    p1.expire_date = expiredate.Value;
                     MessageBox.Show("Are You sure");
                     itemmodel.SaveChanges();
                     MessageBox.Show("updated succfully ^_^");
