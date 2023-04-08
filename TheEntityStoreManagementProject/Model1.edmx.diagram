@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9cf9489f9d324d5f92f393c866de1f2b" Name="Diagram1">
+        <EntityTypeShape EntityType="InventoryModel.customer" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.ExchangePermit" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.ImportPermit" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.item" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Login" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.store" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.supplier" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.TransferItem" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.warehouse" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <AssociationConnector Association="InventoryModel.FK__ExchangeP__item___6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__ExchangeP__store__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__ExchangeP__suppl__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__ImportPer__item___6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__ImportPer__store__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__ImportPer__suppl__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__TransferI__item___7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__warehouse__item___412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__TransferI__from___00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__TransferI__to_st__01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__warehouse__store__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__TransferI__suppl__02084FDA" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ExchangePermit">
+    <Key>
+      <PropertyRef Name="permit_id" />
+    </Key>
+    <Property Name="permit_id" Type="Int32" Nullable="false" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="permit_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="permit_date" Type="DateTime" Precision="0" />
+    <Property Name="supplier_id" Type="Int32" />
+    <Property Name="item_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <NavigationProperty Name="item" Relationship="Self.FK__ExchangeP__item___6C190EBB" FromRole="ExchangePermits" ToRole="items" />
+    <NavigationProperty Name="store" Relationship="Self.FK__ExchangeP__store__6A30C649" FromRole="ExchangePermits" ToRole="stores" />
+    <NavigationProperty Name="supplier" Relationship="Self.FK__ExchangeP__suppl__6B24EA82" FromRole="ExchangePermits" ToRole="suppliers" />
+  </EntityType>
+  <EntityType Name="ImportPermit">
+    <Key>
+      <PropertyRef Name="permit_id" />
+    </Key>
+    <Property Name="permit_id" Type="Int32" Nullable="false" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="permit_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="permit_date" Type="DateTime" Precision="0" />
+    <Property Name="supplier_id" Type="Int32" />
+    <Property Name="production_date" Type="DateTime" Precision="0" />
+    <Property Name="validity_period" Type="Int32" />
+    <Property Name="item_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <NavigationProperty Name="item" Relationship="Self.FK__ImportPer__item___6754599E" FromRole="ImportPermits" ToRole="items" />
+    <NavigationProperty Name="store" Relationship="Self.FK__ImportPer__store__656C112C" FromRole="ImportPermits" ToRole="stores" />
+    <NavigationProperty Name="supplier" Relationship="Self.FK__ImportPer__suppl__66603565" FromRole="ImportPermits" ToRole="suppliers" />
+  </EntityType>
+  <EntityType Name="item">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="unit_of_measurement" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="production_date" Type="DateTime" Precision="0" />
+    <Property Name="expire_date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ExchangePermits" Relationship="Self.FK__ExchangeP__item___6C190EBB" FromRole="items" ToRole="ExchangePermits" />
+    <NavigationProperty Name="ImportPermits" Relationship="Self.FK__ImportPer__item___6754599E" FromRole="items" ToRole="ImportPermits" />
+    <NavigationProperty Name="TransferItems" Relationship="Self.FK__TransferI__item___7F2BE32F" FromRole="items" ToRole="TransferItems" />
+    <NavigationProperty Name="warehouses" Relationship="Self.FK__warehouse__item___412EB0B6" FromRole="items" ToRole="warehouses" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="store">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="manager_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="manager_phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="manager_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ExchangePermits" Relationship="Self.FK__ExchangeP__store__6A30C649" FromRole="stores" ToRole="ExchangePermits" />
+    <NavigationProperty Name="ImportPermits" Relationship="Self.FK__ImportPer__store__656C112C" FromRole="stores" ToRole="ImportPermits" />
+    <NavigationProperty Name="TransferItems" Relationship="Self.FK__TransferI__from___00200768" FromRole="stores" ToRole="TransferItems" />
+    <NavigationProperty Name="TransferItems1" Relationship="Self.FK__TransferI__to_st__01142BA1" FromRole="stores" ToRole="TransferItems" />
+    <NavigationProperty Name="warehouses" Relationship="Self.FK__warehouse__store__403A8C7D" FromRole="stores" ToRole="warehouses" />
+  </EntityType>
+  <EntityType Name="supplier">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ExchangePermits" Relationship="Self.FK__ExchangeP__suppl__6B24EA82" FromRole="suppliers" ToRole="ExchangePermits" />
+    <NavigationProperty Name="ImportPermits" Relationship="Self.FK__ImportPer__suppl__66603565" FromRole="suppliers" ToRole="ImportPermits" />
+    <NavigationProperty Name="TransferItems" Relationship="Self.FK__TransferI__suppl__02084FDA" FromRole="suppliers" ToRole="TransferItems" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TransferItem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="from_store_id" Type="Int32" />
+    <Property Name="to_store_id" Type="Int32" />
+    <Property Name="supplierid" Type="Int32" />
+    <Property Name="item_id" Type="Int32" />
+    <Property Name="production_date" Type="DateTime" Precision="0" />
+    <Property Name="validity_period" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <NavigationProperty Name="item" Relationship="Self.FK__TransferI__item___7F2BE32F" FromRole="TransferItems" ToRole="items" />
+    <NavigationProperty Name="store" Relationship="Self.FK__TransferI__from___00200768" FromRole="TransferItems" ToRole="stores" />
+    <NavigationProperty Name="store1" Relationship="Self.FK__TransferI__to_st__01142BA1" FromRole="TransferItems" ToRole="stores" />
+    <NavigationProperty Name="supplier" Relationship="Self.FK__TransferI__suppl__02084FDA" FromRole="TransferItems" ToRole="suppliers" />
+  </EntityType>
+  <EntityType Name="warehouse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="item_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <NavigationProperty Name="item" Relationship="Self.FK__warehouse__item___412EB0B6" FromRole="warehouses" ToRole="items" />
+    <NavigationProperty Name="store" Relationship="Self.FK__warehouse__store__403A8C7D" FromRole="warehouses" ToRole="stores" />
+  </EntityType>
+  <Association Name="FK__ExchangeP__item___6C190EBB">
+    <End Role="items" Type="Self.item" Multiplicity="0..1" />
+    <End Role="ExchangePermits" Type="Self.ExchangePermit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="items">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ExchangePermits">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExchangeP__store__6A30C649">
+    <End Role="stores" Type="Self.store" Multiplicity="0..1" />
+    <End Role="ExchangePermits" Type="Self.ExchangePermit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ExchangePermits">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExchangeP__suppl__6B24EA82">
+    <End Role="suppliers" Type="Self.supplier" Multiplicity="0..1" />
+    <End Role="ExchangePermits" Type="Self.ExchangePermit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="suppliers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ExchangePermits">
+        <PropertyRef Name="supplier_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ImportPer__item___6754599E">
+    <End Role="items" Type="Self.item" Multiplicity="0..1" />
+    <End Role="ImportPermits" Type="Self.ImportPermit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="items">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ImportPermits">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ImportPer__store__656C112C">
+    <End Role="stores" Type="Self.store" Multiplicity="0..1" />
+    <End Role="ImportPermits" Type="Self.ImportPermit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ImportPermits">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ImportPer__suppl__66603565">
+    <End Role="suppliers" Type="Self.supplier" Multiplicity="0..1" />
+    <End Role="ImportPermits" Type="Self.ImportPermit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="suppliers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ImportPermits">
+        <PropertyRef Name="supplier_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TransferI__item___7F2BE32F">
+    <End Role="items" Type="Self.item" Multiplicity="0..1" />
+    <End Role="TransferItems" Type="Self.TransferItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="items">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TransferItems">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__warehouse__item___412EB0B6">
+    <End Role="items" Type="Self.item" Multiplicity="0..1" />
+    <End Role="warehouses" Type="Self.warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="items">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="warehouses">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TransferI__from___00200768">
+    <End Role="stores" Type="Self.store" Multiplicity="0..1" />
+    <End Role="TransferItems" Type="Self.TransferItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TransferItems">
+        <PropertyRef Name="from_store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TransferI__to_st__01142BA1">
+    <End Role="stores" Type="Self.store" Multiplicity="0..1" />
+    <End Role="TransferItems" Type="Self.TransferItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TransferItems">
+        <PropertyRef Name="to_store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__warehouse__store__403A8C7D">
+    <End Role="stores" Type="Self.store" Multiplicity="0..1" />
+    <End Role="warehouses" Type="Self.warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="warehouses">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TransferI__suppl__02084FDA">
+    <End Role="suppliers" Type="Self.supplier" Multiplicity="0..1" />
+    <End Role="TransferItems" Type="Self.TransferItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="suppliers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TransferItems">
+        <PropertyRef Name="supplierid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InventoryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="ExchangePermits" EntityType="Self.ExchangePermit" />
+    <EntitySet Name="ImportPermits" EntityType="Self.ImportPermit" />
+    <EntitySet Name="items" EntityType="Self.item" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="stores" EntityType="Self.store" />
+    <EntitySet Name="suppliers" EntityType="Self.supplier" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TransferItems" EntityType="Self.TransferItem" />
+    <EntitySet Name="warehouses" EntityType="Self.warehouse" />
+    <AssociationSet Name="FK__ExchangeP__item___6C190EBB" Association="Self.FK__ExchangeP__item___6C190EBB">
+      <End Role="items" EntitySet="items" />
+      <End Role="ExchangePermits" EntitySet="ExchangePermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExchangeP__store__6A30C649" Association="Self.FK__ExchangeP__store__6A30C649">
+      <End Role="stores" EntitySet="stores" />
+      <End Role="ExchangePermits" EntitySet="ExchangePermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExchangeP__suppl__6B24EA82" Association="Self.FK__ExchangeP__suppl__6B24EA82">
+      <End Role="suppliers" EntitySet="suppliers" />
+      <End Role="ExchangePermits" EntitySet="ExchangePermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ImportPer__item___6754599E" Association="Self.FK__ImportPer__item___6754599E">
+      <End Role="items" EntitySet="items" />
+      <End Role="ImportPermits" EntitySet="ImportPermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ImportPer__store__656C112C" Association="Self.FK__ImportPer__store__656C112C">
+      <End Role="stores" EntitySet="stores" />
+      <End Role="ImportPermits" EntitySet="ImportPermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ImportPer__suppl__66603565" Association="Self.FK__ImportPer__suppl__66603565">
+      <End Role="suppliers" EntitySet="suppliers" />
+      <End Role="ImportPermits" EntitySet="ImportPermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TransferI__item___7F2BE32F" Association="Self.FK__TransferI__item___7F2BE32F">
+      <End Role="items" EntitySet="items" />
+      <End Role="TransferItems" EntitySet="TransferItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__warehouse__item___412EB0B6" Association="Self.FK__warehouse__item___412EB0B6">
+      <End Role="items" EntitySet="items" />
+      <End Role="warehouses" EntitySet="warehouses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TransferI__from___00200768" Association="Self.FK__TransferI__from___00200768">
+      <End Role="stores" EntitySet="stores" />
+      <End Role="TransferItems" EntitySet="TransferItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TransferI__to_st__01142BA1" Association="Self.FK__TransferI__to_st__01142BA1">
+      <End Role="stores" EntitySet="stores" />
+      <End Role="TransferItems" EntitySet="TransferItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__warehouse__store__403A8C7D" Association="Self.FK__warehouse__store__403A8C7D">
+      <End Role="stores" EntitySet="stores" />
+      <End Role="warehouses" EntitySet="warehouses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TransferI__suppl__02084FDA" Association="Self.FK__TransferI__suppl__02084FDA">
+      <End Role="suppliers" EntitySet="suppliers" />
+      <End Role="TransferItems" EntitySet="TransferItems" />
+    </AssociationSet>
+    <FunctionImport Name="ForItem" ReturnType="Collection(InventoryModel.ForItem_Result)" />
+    <FunctionImport Name="ForStore" ReturnType="Collection(InventoryModel.ForStore_Result)" />
+    <FunctionImport Name="ListExport" ReturnType="Collection(InventoryModel.ListExport_Result)" />
+    <FunctionImport Name="ListImport" ReturnType="Collection(InventoryModel.ListImport_Result)" />
+  </EntityContainer>
+  <ComplexType Name="ForItem_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="unit_of_measurement" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="storeName" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="ForStore_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="manager_name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="manager_phone" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="manager_email" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="ListExport_Result">
+    <Property Type="Int32" Name="permit_id" Nullable="false" />
+    <Property Type="Int32" Name="store_id" Nullable="true" />
+    <Property Type="String" Name="permit_number" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="permit_date" Nullable="true" />
+    <Property Type="Int32" Name="supplier_id" Nullable="true" />
+    <Property Type="Int32" Name="item_id" Nullable="true" />
+    <Property Type="Int32" Name="quantity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ListImport_Result">
+    <Property Type="Int32" Name="permit_id" Nullable="false" />
+    <Property Type="Int32" Name="store_id" Nullable="true" />
+    <Property Type="String" Name="permit_number" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="permit_date" Nullable="true" />
+    <Property Type="Int32" Name="supplier_id" Nullable="true" />
+    <Property Type="DateTime" Name="production_date" Nullable="true" />
+    <Property Type="Int32" Name="validity_period" Nullable="true" />
+    <Property Type="Int32" Name="item_id" Nullable="true" />
+    <Property Type="Int32" Name="quantity" Nullable="true" />
+  </ComplexType>
+</Schema>

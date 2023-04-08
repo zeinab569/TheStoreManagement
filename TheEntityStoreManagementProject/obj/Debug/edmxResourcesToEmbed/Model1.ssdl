@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="fax" Type="varchar" MaxLength="50" />
+    <Property Name="mobile" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="website" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ExchangePermits">
+    <Key>
+      <PropertyRef Name="permit_id" />
+    </Key>
+    <Property Name="permit_id" Type="int" Nullable="false" />
+    <Property Name="store_id" Type="int" />
+    <Property Name="permit_number" Type="varchar" MaxLength="50" />
+    <Property Name="permit_date" Type="date" />
+    <Property Name="supplier_id" Type="int" />
+    <Property Name="item_id" Type="int" />
+    <Property Name="quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="ImportPermits">
+    <Key>
+      <PropertyRef Name="permit_id" />
+    </Key>
+    <Property Name="permit_id" Type="int" Nullable="false" />
+    <Property Name="store_id" Type="int" />
+    <Property Name="permit_number" Type="varchar" MaxLength="50" />
+    <Property Name="permit_date" Type="date" />
+    <Property Name="supplier_id" Type="int" />
+    <Property Name="production_date" Type="date" />
+    <Property Name="validity_period" Type="int" />
+    <Property Name="item_id" Type="int" />
+    <Property Name="quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="items">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="unit_of_measurement" Type="varchar" MaxLength="50" />
+    <Property Name="production_date" Type="date" />
+    <Property Name="expire_date" Type="date" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="stores">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="address" Type="varchar" MaxLength="255" />
+    <Property Name="manager_name" Type="varchar" MaxLength="255" />
+    <Property Name="manager_phone" Type="varchar" MaxLength="255" />
+    <Property Name="manager_email" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="suppliers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="fax" Type="varchar" MaxLength="50" />
+    <Property Name="mobile" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="website" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TransferItems">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="from_store_id" Type="int" />
+    <Property Name="to_store_id" Type="int" />
+    <Property Name="supplierid" Type="int" />
+    <Property Name="item_id" Type="int" />
+    <Property Name="production_date" Type="date" />
+    <Property Name="validity_period" Type="int" />
+    <Property Name="quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="warehouses">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="store_id" Type="int" />
+    <Property Name="item_id" Type="int" />
+    <Property Name="quantity" Type="int" />
+  </EntityType>
+  <Association Name="FK__ExchangeP__item___6C190EBB">
+    <End Role="items" Type="Self.items" Multiplicity="0..1" />
+    <End Role="ExchangePermits" Type="Self.ExchangePermits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="items">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ExchangePermits">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExchangeP__store__6A30C649">
+    <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
+    <End Role="ExchangePermits" Type="Self.ExchangePermits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ExchangePermits">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExchangeP__suppl__6B24EA82">
+    <End Role="suppliers" Type="Self.suppliers" Multiplicity="0..1" />
+    <End Role="ExchangePermits" Type="Self.ExchangePermits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="suppliers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ExchangePermits">
+        <PropertyRef Name="supplier_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ImportPer__item___6754599E">
+    <End Role="items" Type="Self.items" Multiplicity="0..1" />
+    <End Role="ImportPermits" Type="Self.ImportPermits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="items">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ImportPermits">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ImportPer__store__656C112C">
+    <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
+    <End Role="ImportPermits" Type="Self.ImportPermits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ImportPermits">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ImportPer__suppl__66603565">
+    <End Role="suppliers" Type="Self.suppliers" Multiplicity="0..1" />
+    <End Role="ImportPermits" Type="Self.ImportPermits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="suppliers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ImportPermits">
+        <PropertyRef Name="supplier_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TransferI__from___00200768">
+    <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
+    <End Role="TransferItems" Type="Self.TransferItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TransferItems">
+        <PropertyRef Name="from_store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TransferI__item___7F2BE32F">
+    <End Role="items" Type="Self.items" Multiplicity="0..1" />
+    <End Role="TransferItems" Type="Self.TransferItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="items">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TransferItems">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TransferI__suppl__02084FDA">
+    <End Role="suppliers" Type="Self.suppliers" Multiplicity="0..1" />
+    <End Role="TransferItems" Type="Self.TransferItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="suppliers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TransferItems">
+        <PropertyRef Name="supplierid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TransferI__to_st__01142BA1">
+    <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
+    <End Role="TransferItems" Type="Self.TransferItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TransferItems">
+        <PropertyRef Name="to_store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__warehouse__item___412EB0B6">
+    <End Role="items" Type="Self.items" Multiplicity="0..1" />
+    <End Role="warehouses" Type="Self.warehouses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="items">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="warehouses">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__warehouse__store__403A8C7D">
+    <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
+    <End Role="warehouses" Type="Self.warehouses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="warehouses">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="ForItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ForStore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ListExport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ListImport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="InventoryModelStoreContainer">
+    <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExchangePermits" EntityType="Self.ExchangePermits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImportPermits" EntityType="Self.ImportPermits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="stores" EntityType="Self.stores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="suppliers" EntityType="Self.suppliers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransferItems" EntityType="Self.TransferItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="warehouses" EntityType="Self.warehouses" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ExchangeP__item___6C190EBB" Association="Self.FK__ExchangeP__item___6C190EBB">
+      <End Role="items" EntitySet="items" />
+      <End Role="ExchangePermits" EntitySet="ExchangePermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExchangeP__store__6A30C649" Association="Self.FK__ExchangeP__store__6A30C649">
+      <End Role="stores" EntitySet="stores" />
+      <End Role="ExchangePermits" EntitySet="ExchangePermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExchangeP__suppl__6B24EA82" Association="Self.FK__ExchangeP__suppl__6B24EA82">
+      <End Role="suppliers" EntitySet="suppliers" />
+      <End Role="ExchangePermits" EntitySet="ExchangePermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ImportPer__item___6754599E" Association="Self.FK__ImportPer__item___6754599E">
+      <End Role="items" EntitySet="items" />
+      <End Role="ImportPermits" EntitySet="ImportPermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ImportPer__store__656C112C" Association="Self.FK__ImportPer__store__656C112C">
+      <End Role="stores" EntitySet="stores" />
+      <End Role="ImportPermits" EntitySet="ImportPermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ImportPer__suppl__66603565" Association="Self.FK__ImportPer__suppl__66603565">
+      <End Role="suppliers" EntitySet="suppliers" />
+      <End Role="ImportPermits" EntitySet="ImportPermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TransferI__from___00200768" Association="Self.FK__TransferI__from___00200768">
+      <End Role="stores" EntitySet="stores" />
+      <End Role="TransferItems" EntitySet="TransferItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TransferI__item___7F2BE32F" Association="Self.FK__TransferI__item___7F2BE32F">
+      <End Role="items" EntitySet="items" />
+      <End Role="TransferItems" EntitySet="TransferItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TransferI__suppl__02084FDA" Association="Self.FK__TransferI__suppl__02084FDA">
+      <End Role="suppliers" EntitySet="suppliers" />
+      <End Role="TransferItems" EntitySet="TransferItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TransferI__to_st__01142BA1" Association="Self.FK__TransferI__to_st__01142BA1">
+      <End Role="stores" EntitySet="stores" />
+      <End Role="TransferItems" EntitySet="TransferItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__warehouse__item___412EB0B6" Association="Self.FK__warehouse__item___412EB0B6">
+      <End Role="items" EntitySet="items" />
+      <End Role="warehouses" EntitySet="warehouses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__warehouse__store__403A8C7D" Association="Self.FK__warehouse__store__403A8C7D">
+      <End Role="stores" EntitySet="stores" />
+      <End Role="warehouses" EntitySet="warehouses" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
