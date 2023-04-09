@@ -42,12 +42,22 @@
     <Reference Include="Microsoft.AnalysisServices.AppLocal, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.AnalysisServices.AppLocal.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.AnalysisServices.AppLocal.Tabular, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -130,6 +140,12 @@
     <Compile Include="Reporting_For_Store\CloseToExpire.Designer.cs">
       <DependentUpon>CloseToExpire.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporting_For_Store\Productreportviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporting_For_Store\Productreportviewer.Designer.cs">
+      <DependentUpon>Productreportviewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporting_For_Store\ProductsReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +157,12 @@
     </Compile>
     <Compile Include="Reporting_For_Store\StoreReport.Designer.cs">
       <DependentUpon>StoreReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting_For_Store\TheStoreReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporting_For_Store\TheStoreReportViewer.Designer.cs">
+      <DependentUpon>TheStoreReportViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Reporting_For_Store\TransferItemReport.cs">
       <SubType>Form</SubType>
@@ -202,6 +224,7 @@
     <Compile Include="Screens\Transfer_Itemes.Designer.cs">
       <DependentUpon>Transfer_Itemes.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="store.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -232,12 +255,22 @@
     <EmbeddedResource Include="Reporting_For_Store\CloseToExpire.resx">
       <DependentUpon>CloseToExpire.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporting_For_Store\Productreportviewer.resx">
+      <DependentUpon>Productreportviewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reporting_For_Store\ProductsReport.resx">
       <DependentUpon>ProductsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporting_For_Store\StoreReport.resx">
       <DependentUpon>StoreReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporting_For_Store\TheAlreadyExpireReport.rdlc" />
+    <EmbeddedResource Include="Reporting_For_Store\TheProductReport.rdlc" />
+    <EmbeddedResource Include="Reporting_For_Store\TheStoreReport.rdlc" />
+    <EmbeddedResource Include="Reporting_For_Store\TheStoreReportViewer.resx">
+      <DependentUpon>TheStoreReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting_For_Store\TheTranseferItemReport.rdlc" />
     <EmbeddedResource Include="Reporting_For_Store\TransferItemReport.resx">
       <DependentUpon>TransferItemReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -308,6 +341,19 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

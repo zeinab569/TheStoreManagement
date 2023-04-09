@@ -24,5 +24,22 @@ namespace TheEntityStoreManagementProject.Reporting_For_Store
                 forStoreResultBindingSource.DataSource = smodel.ForStore();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<ForStore_Result> list = forStoreResultBindingSource.DataSource as List<ForStore_Result>;
+
+           
+                using (TheStoreReportViewer viewer = new TheStoreReportViewer(list))
+                {
+                    
+                    viewer.ShowDialog();
+                   
+                }
+
+            }
+            
+
+        }
     }
-}
+

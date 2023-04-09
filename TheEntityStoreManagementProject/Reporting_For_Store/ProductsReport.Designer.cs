@@ -30,12 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.forItemResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitofmeasurementDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.storeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.forItemResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forItemResultBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -57,10 +58,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(534, 300);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // forItemResultBindingSource
-            // 
-            this.forItemResultBindingSource.DataSource = typeof(TheEntityStoreManagementProject.ForItem_Result);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -92,12 +89,29 @@
             this.storeNameDataGridViewTextBoxColumn.HeaderText = "storeName";
             this.storeNameDataGridViewTextBoxColumn.Name = "storeNameDataGridViewTextBoxColumn";
             // 
+            // forItemResultBindingSource
+            // 
+            this.forItemResultBindingSource.DataSource = typeof(TheEntityStoreManagementProject.ForItem_Result);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.button1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(224, 320);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 40);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Print";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ProductsReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(582, 327);
+            this.ClientSize = new System.Drawing.Size(582, 372);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "ProductsReport";
             this.Text = "ProductsReport";
@@ -117,5 +131,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn unitofmeasurementDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn storeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource forItemResultBindingSource;
+        private System.Windows.Forms.Button button1;
     }
 }

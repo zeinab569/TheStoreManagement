@@ -86,6 +86,7 @@ namespace TheEntityStoreManagementProject.Screens
         {
             Transfer_Itemes transfer_Itemes = new Transfer_Itemes();
             transfer_Itemes.Show();
+            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)

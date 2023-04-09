@@ -30,13 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.forStoreResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.managernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.managerphoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.manageremailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.forStoreResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forStoreResultBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -60,9 +61,17 @@
             this.dataGridView1.Size = new System.Drawing.Size(655, 327);
             this.dataGridView1.TabIndex = 1;
             // 
-            // forStoreResultBindingSource
+            // button1
             // 
-            this.forStoreResultBindingSource.DataSource = typeof(TheEntityStoreManagementProject.ForStore_Result);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.button1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(261, 351);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 40);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Print";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -100,12 +109,17 @@
             this.manageremailDataGridViewTextBoxColumn.HeaderText = "manager_email";
             this.manageremailDataGridViewTextBoxColumn.Name = "manageremailDataGridViewTextBoxColumn";
             // 
+            // forStoreResultBindingSource
+            // 
+            this.forStoreResultBindingSource.DataSource = typeof(TheEntityStoreManagementProject.ForStore_Result);
+            // 
             // StoreReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(657, 329);
+            this.ClientSize = new System.Drawing.Size(660, 403);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "StoreReport";
             this.Text = "StoreReport";
@@ -126,5 +140,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn managerphoneDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn manageremailDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource forStoreResultBindingSource;
+        private System.Windows.Forms.Button button1;
     }
 }
